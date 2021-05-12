@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "strict": false,
+    "allowJs": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "typeRoots": ["./node_modules/@types", "./app/@types"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@controllers/*": ["app/api/controllers/*"],
+      "@entities/*": ["app/api/entities/*"],
+      "@repositories/*": ["app/api/repositories/*"],
+      "@services/*": ["app/api/services/*"],
+      "@middlewares/*": ["app/api/middlewares/*"],
+      "@routes/*": ["app/api/routes/*"],
+      "@utils/*": ["app/api/utils/*"],
+      "@database/*": ["app/database/*"],
+      "@config/*": ["app/config/*"],
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
