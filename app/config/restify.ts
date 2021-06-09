@@ -9,7 +9,7 @@ import defaultRoutes from '@routes/default.routes'
 
 export default (): Server => {
   const app = restify.createServer({
-    name: 'Starbem Payment MS',
+    name: 'Starbem Template MS',
     version: '1.0.0',
   })
 

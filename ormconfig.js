@@ -1,18 +1,23 @@
+import path from 'path'
 import dotenv from 'dotenv'
+
 dotenv.config()
 
 export default {
+  name: 'default',
   type: 'mysql',
-  host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT,
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASS,
-  database: process.env.DATABASE_NAME,
-  logging: ['query', 'error'],
-  logger: 'file',
-  migrations: ['./app/database/migrations/**.ts'],
-  entities: ['./app/api/entities/**.ts'],
+  host: process.env.TYPEORM_HOST,
+  port: Number(process.env.TYPEORM_PORT),
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
+  database: process.env.TYPEORM_DATABASE,
+  synchronize: false,
+  migrationsRun: true,
+  logging: true,
+  migrations: [path.resolve(__dirname, process.env.TYPEORM_MIGRATIONS)],
+  entities: [path.resolve(__dirname, process.env.TYPEORM_ENTITIES)],
   cli: {
-    migrationsDir: './app/database/migrations',
+    migrationsDir: process.env.TYPEORM_MIGRATIONS_DIR,
+    entitiesDir: process.env.TYPEORM_ENTITIES_DIR,
   },
 }

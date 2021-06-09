@@ -1,3 +1,12 @@
-import { createConnection } from 'typeorm'
+import { createConnection, ConnectionOptions } from 'typeorm'
+import dotenv from 'dotenv'
+import config from '../../ormconfig'
 
-createConnection()
+dotenv.config()
+
+// @ts-ignore
+const connectionOptions: ConnectionOptions = { ...config }
+
+const connection = createConnection(connectionOptions)
+
+export default connection

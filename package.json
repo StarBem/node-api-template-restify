@@ -1,30 +1,36 @@
 {
   "name": "node-api-template-restify",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./ -o ./dist",
     "start:dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules --no-notify app/index.ts",
     "start:prod": "ts-node -r tsconfig-paths/register ./dist/app/index.js",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "typeorm": "node --require ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ormconfig.js",
+    "migration:run": "npm run typeorm migration:run"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "restify": "^8.5.1",
+    "restify-errors": "^8.0.2",
     "typeorm": "^0.2.32",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/config": "^0.0.38",
     "@types/cors": "^2.8.10",
     "@types/dotenv": "^8.2.0",
     "@types/node": "^15.0.2",
     "@types/restify": "^8.5.1",
+    "@types/restify-errors": "^4.3.3",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
@@ -38,11 +44,11 @@
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",
-    "ts-node": "^9.1.1",
+    "ts-node": "^10.0.0",
     "ts-node-dev": "^1.1.6",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.2"
   },
   "husky": {
     "hooks": {
