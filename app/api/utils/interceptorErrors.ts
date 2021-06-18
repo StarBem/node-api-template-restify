@@ -1,5 +1,14 @@
 import errors from 'restify-errors'
 
+export const mountError = (code: number, message: string) => {
+  return {
+    response: {
+      code,
+      data: { errors: [{ message }] },
+    },
+  }
+}
+
 export default {
   verifyErrors: (err: any) => {
     if (err instanceof TypeError) {
