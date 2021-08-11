@@ -1,9 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2017",
     "module": "commonjs",
-    "strict": false,
+    "lib": ["es6"],
     "allowJs": true,
     "outDir": "./dist",
     "removeComments": true,
@@ -22,11 +22,12 @@
       "@entities/*": ["app/api/entities/*"],
       "@repositories/*": ["app/api/repositories/*"],
       "@services/*": ["app/api/services/*"],
+      "@validators/*": ["app/api/validators/*"],
       "@middlewares/*": ["app/api/middlewares/*"],
       "@routes/*": ["app/api/routes/*"],
       "@utils/*": ["app/api/utils/*"],
       "@database/*": ["app/database/*"],
-      "@config/*": ["app/config/*"],
+      "@config/*": ["app/config/*"]
     }
   },
   "include": ["**/*.ts"],

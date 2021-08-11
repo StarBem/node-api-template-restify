@@ -14,42 +14,45 @@ export default {
     if (err instanceof TypeError) {
       return new errors.BadRequestError(err)
     } else {
-      const { code, status } = err.response || err.response.data
+      const { code, status } = err.response || err.response?.data
 
-      console.log(err.response.data.errors)
+      console.log(err.response)
 
-      if (code || status === 400) {
+      if (code === 400 || status === 400) {
         return new errors.BadRequestError(
           { statusCode: 400 },
-          err.response.data.errors[0].message ||
+          err.response?.data?.errors[0].message ||
             'Algum parametro necessario não foi passado!'
         )
       }
 
-      if (code || status === 401) {
+      if (code === 401 || status === 401) {
         return new errors.UnauthorizedError(
           {
             statusCode: 401,
           },
-          'Você não tem permissão para acessar este serviço!'
+          err.response?.data?.errors[0].message ||
+            'Você não tem permissão para acessar este serviço!'
         )
       }
 
-      if (code || status === 403) {
+      if (code === 403 || status === 403) {
         return new errors.ForbiddenError(
           {
             statusCode: 403,
           },
-          'Você não tem autorização para acessar este serviço!'
+          err.response?.data?.errors[0].message ||
+            'Você não tem autorização para acessar este serviço!'
         )
       }
 
-      if (code || status === 404) {
+      if (code === 404 || status === 404) {
         return new errors.NotFoundError(
           {
             statusCode: 404,
           },
-          'Não foi possivel encontrar o que você está solicitando!'
+          err.response?.data?.errors[0].message ||
+            'Não foi possivel encontrar o que você está solicitando!'
         )
       }
 

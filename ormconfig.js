@@ -14,8 +14,8 @@ export default {
   synchronize: false,
   migrationsRun: true,
   logging: true,
-  migrations: [path.resolve(__dirname, process.env.TYPEORM_MIGRATIONS)],
-  entities: [path.resolve(__dirname, process.env.TYPEORM_ENTITIES)],
+  migrations: [process.env.TYPEORM_MIGRATIONS],
+  entities: [process.env.TYPEORM_ENTITIES],
   cli: {
     migrationsDir: process.env.TYPEORM_MIGRATIONS_DIR,
     entitiesDir: process.env.TYPEORM_ENTITIES_DIR,
