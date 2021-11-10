@@ -18,16 +18,7 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@controllers/*": ["app/api/controllers/*"],
-      "@entities/*": ["app/api/entities/*"],
-      "@repositories/*": ["app/api/repositories/*"],
-      "@services/*": ["app/api/services/*"],
-      "@validators/*": ["app/api/validators/*"],
-      "@middlewares/*": ["app/api/middlewares/*"],
-      "@routes/*": ["app/api/routes/*"],
-      "@utils/*": ["app/api/utils/*"],
-      "@database/*": ["app/database/*"],
-      "@config/*": ["app/config/*"]
+      "@/*": ["app/*"]
     }
   },
   "include": ["**/*.ts"],

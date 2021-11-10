@@ -1,23 +1,20 @@
-import path from 'path'
-import dotenv from 'dotenv'
-
-dotenv.config()
+import config from '@/config'
 
 export default {
   name: 'default',
   type: 'mysql',
-  host: process.env.TYPEORM_HOST,
-  port: Number(process.env.TYPEORM_PORT),
-  username: process.env.TYPEORM_USERNAME,
-  password: process.env.TYPEORM_PASSWORD,
-  database: process.env.TYPEORM_DATABASE,
-  synchronize: false,
+  host: config.database.host,
+  port: config.database.port,
+  username: config.database.username,
+  password: config.database.password,
+  database: config.database.database,
+  synchronize: config.typeorm.synchronize,
   migrationsRun: true,
-  logging: true,
-  migrations: [process.env.TYPEORM_MIGRATIONS],
-  entities: [process.env.TYPEORM_ENTITIES],
+  logging: config.typeorm.logging,
+  migrations: [config.typeorm.migrations],
+  entities: [config.typeorm.entities],
   cli: {
-    migrationsDir: process.env.TYPEORM_MIGRATIONS_DIR,
-    entitiesDir: process.env.TYPEORM_ENTITIES_DIR,
+    migrationsDir: config.typeorm.migrationsDir,
+    entitiesDir: config.typeorm.entitiesDir,
   },
 }

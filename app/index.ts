@@ -1,19 +1,30 @@
-import dotenv from 'dotenv'
-import server from '@config/restify'
-import connection from '@database/index'
 import 'reflect-metadata'
-
-dotenv.config()
+import * as Sentry from '@sentry/node'
+import { RewriteFrames } from '@sentry/integrations'
+import server from '@/config/restify'
+import connection from '@/database'
+import logger from '@/config/logger'
+import config from '@/config'
 
 const app = server()
-const port = process.env.PORT || 3333
+const port = config.port || 3333
 
 connection
   .then((conn) => {
-    console.log(`🚀 Database connected on ${conn.options.database}!`)
+    logger.info(`🚀 Database connected on ${conn.options.database}!`)
 
     app.listen(port, () => {
-      console.log(`🚀 Listening at ${app.name} ${app.url}`)
+      logger.info(`🚀 Listening at ${app.name} ${app.url}`)
+
+      Sentry.init({
+        dsn: config.sentry.dsn,
+        tracesSampleRate: 1.0,
+        integrations: [
+          new RewriteFrames({
+            root: global.__dirname,
+          }),
+        ],
+      })
     })
   })
-  .catch((err) => console.log('Connection Error: ', err))
+  .catch((err) => logger.error('Connection Error: ', err))

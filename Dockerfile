@@ -28,6 +28,6 @@ RUN npm install
 
 COPY --from=0 /usr/src/app/dist ./dist
 
-EXPOSE 4006
+EXPOSE 4000
 
 CMD yarn start:prod

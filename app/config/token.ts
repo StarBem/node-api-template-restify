@@ -1,10 +1,8 @@
 import { Request, Response, Next } from 'restify'
 import jwt from 'jsonwebtoken'
-import errs from 'restify-errors'
-import dotenv from 'dotenv'
-dotenv.config()
-
-dotenv.config()
+import errors from 'restify-errors'
+import config from '@/config'
+import constants from '@/constants'
 
 export const decodeJwt = (req: Request, res: Response, next: Next) => {
   const { authorization } = req.headers
@@ -12,7 +10,7 @@ export const decodeJwt = (req: Request, res: Response, next: Next) => {
 
   let uuid = ''
 
-  jwt.verify(parts[1], process.env.SECRET, (err, decoded: any) => {
+  jwt.verify(parts[1], config.secret, (err, decoded: any) => {
     if (decoded) {
       uuid = decoded.uuid
     }
@@ -25,15 +23,11 @@ export const decodeJwt = (req: Request, res: Response, next: Next) => {
 }
 
 export default (req: Request, res: Response, next: Next) => {
-  const token = process.env.STATIC_TOKEN
+  const token = config.authentication
   const { authentication } = req.headers
 
   if (authentication && authentication !== token) {
-    return next(
-      new errs.ForbiddenError(
-        'Você não tem permissão para acessar este serviço!'
-      )
-    )
+    return next(new errors.ForbiddenError(constants.general[403]))
   }
 
   return next()
