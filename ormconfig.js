@@ -8,9 +8,9 @@ export default {
   username: config.database.username,
   password: config.database.password,
   database: config.database.database,
-  synchronize: config.typeorm.synchronize,
+  synchronize: false,
   migrationsRun: true,
-  logging: config.typeorm.logging,
+  logging: false,
   migrations: [config.typeorm.migrations],
   entities: [config.typeorm.entities],
   cli: {

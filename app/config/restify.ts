@@ -29,7 +29,6 @@ export default (): Server => {
   app.use(cors)
   app.use(restify.plugins.acceptParser(app.acceptable))
   app.use(restify.plugins.queryParser())
-  app.use(restify.plugins.bodyParser())
   app.use(
     restify.plugins.bodyParser({
       uploadDir: os.tmpdir(),
