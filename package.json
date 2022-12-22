@@ -19,7 +19,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "js-essentials-functions": "^1.2.7",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "restify": "^8.6.0",
